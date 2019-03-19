@@ -1,0 +1,50 @@
+package com.nikolian;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        double sum1 = 0;
+        double sum2 = 0;
+        double sum3 = 0;
+        Scanner input = new Scanner(System.in).useLocale(Locale.US);
+        Item1 item1 = new Item1("Lettuce", 0.50);
+        Item2 item2 = new Item2("Tomato", 0.60);
+        Item3 item3 = new Item3("Onions", 0.30);
+        Item4 item4 = new Item4("Bacon", 1.50);
+        Item5 item5 = new Item5("Spinach", 1.10);
+        Item6 item6 = new Item6("Eggplant", 0.75);
+
+        Hamburger hamburger = new Hamburger("Regular", "Beef", "Bill's Hamburger", 4.50, item1, item2, item3, item4);
+        HealthyBurger healthyBurger = new HealthyBurger("Chicken", "Garden Burger", 5, item1, item2, item3, item4, item5, item6);
+        DeluxeBurger deluxeBurger = new DeluxeBurger("Regular","Beef","Deluxe Burger",4.50,2,3);
+
+        System.out.println("Welcome to \"Bill's Burgers\". May i take your order please?");
+        for (int i = 0; ; i++) {
+            System.out.println("Type (1) for Bill's Hamburger, (2) for Garden Burger, (3) for Deluxe Burger or (0) to continue.");
+            int choice = input.nextInt();
+            if(choice == 0){
+                break;
+            }else if(choice == 1){
+                System.out.println("Would you like to add some more items?\nType (1) for YES or (0) for NO");
+                choice = input.nextInt();
+                hamburger.additionalItem(choice);
+                sum1 += hamburger.finalPrice();
+            }else if(choice == 2){
+                System.out.println("Would you like to add some more items?\nType (1) for YES or (0) for NO");
+                choice = input.nextInt();
+                healthyBurger.additionalItem(choice);
+                sum2 += healthyBurger.finalPrice();
+            }else if(choice == 3){
+                System.out.println("Deluxe Burger comes with chips and drink, no other additional items");
+                sum3 += deluxeBurger.finalPrice();
+            }
+        }
+
+        System.out.println("The sum of your order is: " + (sum1+sum2+sum3) + " $\nThank you for choosing \"Bill's Burgers\". Goodbye");
+
+    }
+}
