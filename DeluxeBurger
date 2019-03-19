@@ -1,0 +1,25 @@
+package com.nikolian;
+
+public class DeluxeBurger extends Hamburger {
+
+    private double chipsPrice;
+    private double drinkPrice;
+
+    public DeluxeBurger(String bread, String meat, String name, double basePrice, double chipsPrice, double drinkPrice) {
+        super(bread, meat, name, basePrice, null, null, null, null);
+        this.chipsPrice = chipsPrice;
+        this.drinkPrice = drinkPrice;
+    }
+
+    public double getChipsPrice() {
+        return chipsPrice;
+    }
+    public double getDrinkPrice() {
+        return drinkPrice;
+    }
+
+    public double finalPrice(){
+        double finalPrice = super.basePrice + this.chipsPrice + this.drinkPrice;
+        return finalPrice;
+    }
+}
