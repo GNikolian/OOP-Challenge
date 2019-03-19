@@ -1,0 +1,70 @@
+package com.nikolian;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class HealthyBurger extends Hamburger {
+
+    private Item5 item5;
+    private Item6 item6;
+    private int count = 0;
+    private int count5 = 0;
+    private int count6 = 0;
+    Scanner input = new Scanner(System.in).useLocale(Locale.US);
+
+    public HealthyBurger(String meat, String name, double basePrice, Item1 item1, Item2 item2, Item3 item3, Item4 item4, Item5 item5, Item6 item6) {
+        super("Brown rye", meat, name, basePrice, item1, item2, item3, item4);
+        this.item5 = item5;
+        this.item6 = item6;
+        this.basePrice = basePrice;
+        this.item1 = item1;
+        this.item2 = item2;
+        this.item3 = item3;
+        this.item4 = item4;
+    }
+
+    public Item5 getItem5() {
+        return item5;
+    }
+    public Item6 getItem6() {
+        return item6;
+    }
+
+    @Override
+    public void additionalItem(int choice) {
+        super.additionalItem(choice);
+        System.out.println("For Healthy Burgers you can put two extra items.");
+        for(int i=0;;i++) {
+            count++;
+            System.out.println("Type (1) for spinach, (2) for eggplant or (0) to continue");
+            int healthyChoice = input.nextInt();
+            if (healthyChoice == 0) {
+                break;
+            } else if (healthyChoice == 1) {
+                item5.addItem5();
+                count5++;
+            } else if (healthyChoice == 2) {
+                item6.addItem6();
+                count6++;
+            }
+            if (count == 2) {
+                break;
+            }
+        }
+    }
+
+    public double finalPrice(){
+        double finalPrice = 0;
+        System.out.println("Base price: " + this.basePrice + " $");
+        System.out.println(item1.getName() + " price: " + item1.getPrice() + " $");
+        System.out.println(item2.getName() + " price: " + item2.getPrice() + " $");
+        System.out.println(item3.getName() + " price: " + item3.getPrice() + " $");
+        System.out.println(item4.getName() + " price: " + item4.getPrice() + " $");
+        System.out.println(item5.getName() + " price: " + item5.getPrice() + " $");
+        System.out.println(item6.getName() + " price: " + item6.getPrice() + " $");
+        finalPrice += (this.basePrice + item1.finalPrice1(count1) + item2.finalPrice2(count2) +
+                item3.finalPrice3(count3) + item4.finalPrice4(count4) + item5.finalPrice5(count5) + item6.finalPrice6(count6));
+        System.out.println("Final price: " + finalPrice + " $");
+        return finalPrice;
+    }
+}
