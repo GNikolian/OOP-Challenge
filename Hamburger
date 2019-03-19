@@ -1,0 +1,102 @@
+package com.nikolian;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Hamburger {
+
+    public String bread;
+    private String meat;
+    private String name;
+    public double basePrice;
+    public Item1 item1;
+    public Item2 item2;
+    public Item3 item3;
+    public Item4 item4;
+    private int count = 0;
+    public int count1 = 0;
+    public int count2 = 0;
+    public int count3 = 0;
+    public int count4 = 0;
+    Scanner input = new Scanner(System.in).useLocale(Locale.US);
+
+    public Hamburger(String bread, String meat, String name, double basePrice, Item1 item1, Item2 item2, Item3 item3, Item4 item4) {
+        this.bread = bread;
+        this.meat = meat;
+        this.name = name;
+        this.basePrice = basePrice;
+        this.item1 = item1;
+        this.item2 = item2;
+        this.item3 = item3;
+        this.item4 = item4;
+    }
+
+    public String getBread() {
+        return bread;
+    }
+    public String getMeat() {
+        return meat;
+    }
+    public String getName() {
+        return name;
+    }
+    public double getBasePrice() {
+        return basePrice;
+    }
+    public Item1 getItem1() {
+        return item1;
+    }
+    public Item2 getItem2() {
+        return item2;
+    }
+    public Item3 getItem3() {
+        return item3;
+    }
+    public Item4 getItem4() {
+        return item4;
+    }
+
+    public void additionalItem(int choice) {
+        if (choice == 0) {
+            System.out.println("No extra item added");
+        } else {
+            for (int i = 0; ; i++) {
+                count++;
+                System.out.println("Perfect! Type (1) for lettuce, (2) for tomato, (3) for onions, (4) for bacon or (0) to continue");
+                choice = input.nextInt();
+                if (choice == 0) {
+                    break;
+                } else if (choice == 1) {
+                    item1.addItem1();
+                    count1++;
+                } else if (choice == 2) {
+                    item2.addItem2();
+                    count2++;
+                } else if (choice == 3) {
+                    item3.addItem3();
+                    count3++;
+                } else if (choice == 4) {
+                    item4.addItem4();
+                    count4++;
+                }
+                if (count == 4) {
+                    break;
+                }
+            }
+        }
+    }
+
+    public double finalPrice(){
+        double finalPrice = 0;
+        System.out.println("Base price: " + this.basePrice + " $");
+        System.out.println(item1.getName() + " price: " + item1.getPrice() + " $");
+        System.out.println(item2.getName() + " price: " + item2.getPrice() + " $");
+        System.out.println(item3.getName() + " price: " + item3.getPrice() + " $");
+        System.out.println(item4.getName() + " price: " + item4.getPrice() + " $");
+        finalPrice += (this.basePrice + item1.finalPrice1(count1) + item2.finalPrice2(count2) +
+                item3.finalPrice3(count3) + item4.finalPrice4(count4));
+        System.out.println("Final price: " + finalPrice + " $");
+        return finalPrice;
+    }
+
+}
