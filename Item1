@@ -1,0 +1,28 @@
+package com.nikolian;
+
+public class Item1 {
+
+    private String name;
+    private double price;
+
+    public Item1(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public double getPrice() {
+        return price;
+    }
+
+    public void addItem1(){
+        System.out.println(this.name + " added");
+    }
+
+    public double finalPrice1(int count){
+        this.price *= count;
+        return this.price;
+    }
+}
